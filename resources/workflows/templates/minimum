@@ -8,7 +8,7 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: $WORKFLOW_NAME-admin
+  name: $WORKFLOW_NAME-bot
   namespace: $WORKFLOW_NAME
   labels:
     workflow-template: $TEMPLATE_NAME
@@ -16,7 +16,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: $WORKFLOW_NAME-admin
+  name: $WORKFLOW_NAME-bot
   namespace: $WORKFLOW_NAME
   labels:
     workflow-template: $TEMPLATE_NAME
@@ -30,17 +30,17 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: $WORKFLOW_NAME-admin
+  name: $WORKFLOW_NAME-bot
   namespace: $WORKFLOW_NAME
   labels:
     workflow-template: $TEMPLATE_NAME
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: $WORKFLOW_NAME-admin
+  name: $WORKFLOW_NAME-bot
 subjects:
   - kind: ServiceAccount
-    name: $WORKFLOW_NAME-admin
+    name: $WORKFLOW_NAME-bot
 ---
 apiVersion: v1
 kind: ResourceQuota
